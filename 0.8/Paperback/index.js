@@ -2822,7 +2822,9 @@ class KomgaRequestInterceptor {
             // raising an error in getAuthorizationString when we check for its existence
             // Thus we only inject an authorizationString if none are defined in the request
             if (request.headers.authorization === undefined) {
-                request.headers.authorization = yield (0, Common_1.getAuthorizationString)(this.stateManager);
+                request.headers = {
+                    'authorization': yield (0, Common_1.getAuthorizationString)(this.stateManager)
+                };
             }
             return request;
         });
